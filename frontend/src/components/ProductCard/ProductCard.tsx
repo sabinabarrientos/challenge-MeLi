@@ -1,18 +1,30 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Product } from '../../models/Product.model';
 import AmountFormat from '../../utils/amountFormat';
 import freeShippingImg from '../../assets/ic_shipping.png'
 import './ProductCard.scss';
+import { SearchContext } from '../../providers/Search.provider';
+import { useNavigate } from 'react-router-dom';
+import SearchService from '../../services/Search.service';
 
 export interface ProductListProps {
     data: Product;
 }
 const ProductCard: React.FC<ProductListProps> = ({ data: { title, price, picture, id, free_shipping, condition, city } }): JSX.Element => {
 
+    const context = useContext(SearchContext);
+    const history = useNavigate();
+
+    const itemDetailRedirection = () => {
+        alert(id);
+        context.updateSelectedItem(id);
+        history(`${SearchService.states.detail}${id}`);
+    }
+
     return (
         <section>
 
-            <section className='product-card__content' onClick={() => alert('gjsid')}>
+            <section className='product-card__content' onClick={itemDetailRedirection}>
                 <div className='product-card__img'>
 
                     <img className='product-card__picture' src={picture} alt='producto' />

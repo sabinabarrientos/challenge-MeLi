@@ -10,8 +10,8 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ categories }): JSX.Element => {
         <section className='breadcrumb__list'>
             {categories.map((elem, index) =>
                 index === categories.length - 1 ?
-                    <a className='breadcrumb__list__last-cat' href=''> {elem}</a>
-                    : <a className='breadcrumb__list__categories' href=''> {` ${elem} >`}</a>
+                    <a key={index} className='breadcrumb__list__last-cat' href=''>{elem}</a>
+                    : <a key={index} className='breadcrumb__list__categories' href=''> {` ${elem} >`}</a>
             )}
         </section>
     )
