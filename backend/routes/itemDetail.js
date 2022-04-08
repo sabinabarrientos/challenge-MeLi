@@ -3,7 +3,7 @@ var router = express.Router();
 var axios = require('axios');
 
 //get item detail data
-router.get("/:id", async function (req, res) {
+router.get('/:id', async function (req, res) {
 
     const itemId = req.params.id;
     (async function getItemDetail() {
@@ -65,11 +65,9 @@ router.get("/:id", async function (req, res) {
                 },
             };
             res.send(data);
-            res.status(200)
 
         } catch (error) {
             console.error(error);
-            res.status(500)
         }
     })();
 });
