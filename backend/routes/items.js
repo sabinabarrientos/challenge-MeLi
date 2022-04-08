@@ -8,7 +8,6 @@ router.get('/', async (req, res) => {
     (async function getItems() {
         res.header('Access-Control-Allow-Origin', "*");
         const { q } = req.query || ' ';
-        console.log(q);
 
         try {
             const { data } = await axios.get(
