@@ -12,14 +12,13 @@ class SearchService {
         return {
             home: '/',
             search: '/items',
-            detail: '/items/:id'
+            detail: '/items/'
         };
     }
 
     static getProducts(query: string): Promise<Result> {
 
         return new Promise((resolve, reject) => {
-            console.log('query en el servicio', query)
 
             const apiResponse = api.get(!!query ? getUrl.searchItems(query) : getUrl.defaultItems);
 

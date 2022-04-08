@@ -19,7 +19,7 @@ const App: React.FC = (): JSX.Element => {
             path={SearchService.states.search}
             element={<Layout />} />
           <Route
-            path={SearchService.states.detail}
+            path={`${SearchService.states.detail}:id`}
             element={<ItemDetail />} />
 
         </Routes>
