@@ -1,0 +1,9 @@
+.product-list {
+    &__list {
+        background-color: #FFF;
+
+        @media (min-width: 650px) {
+            // padding: 2rem 4rem;
+        }
+    }
+}

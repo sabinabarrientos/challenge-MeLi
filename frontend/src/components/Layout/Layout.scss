@@ -1,0 +1,10 @@
+.layout {
+    &__content {
+        padding: 1rem;
+        background-color: #EEE;
+
+        @media (min-width: 650px) {
+            padding: 1rem 4rem;
+        }
+    }
+}
