@@ -1,19 +1,21 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Product } from '../../models/Product.model';
 import AmountFormat from '../../utils/amountFormat';
-import freeShippingImg from '../../assets/ic_shipping.png';
+import freeShippingImg from '../../assets/ic_shipping.png'
 import './ProductCard.scss';
 import { useNavigate } from 'react-router-dom';
 import SearchService from '../../services/Search.service';
+import Picture from '../Picture/Picture';
+import { PictureSizes } from '../../enums/enums';
 
 export interface ProductListProps {
     data: Product;
 }
 const ProductCard: React.FC<ProductListProps> = ({ data: { title, price, picture, id, free_shipping, city } }): JSX.Element => {
-    const history = useNavigate();
+    const navigateTo = useNavigate();
 
     const itemDetailRedirection = () => {
-        history(`${SearchService.states.detail}${id}`);
+        navigateTo(`${SearchService.states.detail}${id}`);
     }
 
     return (
@@ -22,7 +24,7 @@ const ProductCard: React.FC<ProductListProps> = ({ data: { title, price, picture
             <section className='product-card__content' onClick={itemDetailRedirection}>
                 <div className='product-card__img'>
 
-                    <img className='product-card__picture' src={picture} alt='muestra-del-producto' />
+                    <Picture src={picture} alt='muestra-del-producto' size={PictureSizes.small} />
                 </div>
                 <div className='product-card__detail'>
                     <div className='product-card__description'>
