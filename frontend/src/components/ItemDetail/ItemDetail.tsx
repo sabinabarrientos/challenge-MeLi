@@ -10,6 +10,7 @@ import Picture from '../Picture/Picture';
 import { PictureSizes } from '../../enums/enums';
 import ProductInfo from '../ProductInfo/ProductInfo';
 import ProductDescription from '../ProductDescription/ProductDescription';
+import { usePageTitle } from '../../hooks/usePageTitle';
 
 
 const ItemDetail: React.FC = (): JSX.Element => {
@@ -29,6 +30,8 @@ const ItemDetail: React.FC = (): JSX.Element => {
             .finally(() => setIsLoading(false))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    usePageTitle(context.data.itemDetail.item.title)
 
     const getItems = (query: string, urlRedirect: string): void => {
         SearchService.getProducts(query)
