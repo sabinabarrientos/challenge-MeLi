@@ -48,4 +48,3 @@ const SearchBar: React.FC<SearchBarProps> = ({ onInputChange, onClickHandler }):
 }
 
 export default SearchBar;
-

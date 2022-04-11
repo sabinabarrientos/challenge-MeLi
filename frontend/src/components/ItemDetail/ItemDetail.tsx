@@ -76,7 +76,6 @@ const ItemDetail: React.FC = (): JSX.Element => {
                 </section>
             }
         </>
-        // </section >
     )
 }
 export default ItemDetail;
