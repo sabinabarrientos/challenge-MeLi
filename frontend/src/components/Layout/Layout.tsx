@@ -12,11 +12,11 @@ const Layout: React.FC = (): JSX.Element => {
 
     const context = useContext(SearchContext);
     const navigateTo = useNavigate();
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
-    useEffect((): void => {
-        setIsLoading(false)
-    }, [])
+    // useEffect((): void => {
+    //     setIsLoading(false)
+    // }, [])
 
 
     const homeRedirect = (): void => {
@@ -24,6 +24,7 @@ const Layout: React.FC = (): JSX.Element => {
     }
 
     const updateQuery = (query: string): void => {
+        setIsLoading(true)
         const properUrl = `${SearchService.states.search}?search=${query}`;
         SearchService.getProducts(query)
             .then((data) => {
