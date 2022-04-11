@@ -9,6 +9,7 @@ export interface ProductListProps {
 
 const ProductList: React.FC<ProductListProps> = ({ data }): JSX.Element => {
     const elements = data.items.slice(0, 4)
+
     return (
         <section className='product-list__list'>
             {elements.map((elem, index) =>

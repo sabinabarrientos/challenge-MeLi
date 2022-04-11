@@ -1,18 +1,28 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import ProductList from '../ProductList/ProductList';
 import './Layout.scss';
 import SearchService from '../../services/Search.service';
 import { SearchContext } from '../../providers/Search.provider';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
 import Loading from '../Loading/Loading';
 
 const Layout: React.FC = (): JSX.Element => {
-
+    const location = useLocation();
+    const searchParam = location.search.split('=')[1]
     const context = useContext(SearchContext);
     const navigateTo = useNavigate();
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect((): void => {
+        SearchService.getProducts(searchParam)
+            .then((data) => {
+                context.updateResult(data)
+            })
+            .catch((error) => { console.log(error) })
+            .finally(() => setIsLoading(false));
+    }, [])
 
     const homeRedirect = (): void => {
         navigateTo(SearchService.states.home);
