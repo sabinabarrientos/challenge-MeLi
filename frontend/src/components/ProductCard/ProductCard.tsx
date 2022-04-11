@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Product } from '../../models/Product.model';
 import AmountFormat from '../../utils/amountFormat';
-import freeShippingImg from '../../assets/ic_shipping.png'
+import freeShippingImg from '../../assets/ic_shipping.png';
 import './ProductCard.scss';
 import { useNavigate } from 'react-router-dom';
 import SearchService from '../../services/Search.service';

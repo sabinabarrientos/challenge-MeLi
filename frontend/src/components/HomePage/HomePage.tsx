@@ -31,9 +31,7 @@ const HomePage: React.FC = (): JSX.Element => {
     }
 
     return (
-        <>
-            <SearchBar onInputChange={updateQuery} onClickHandler={homeRedirect} />
-        </>
+        <SearchBar onInputChange={updateQuery} onClickHandler={homeRedirect} />
     )
 
 }

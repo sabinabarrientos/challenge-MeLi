@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import SearchService from './services/Search.service';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout/Layout';

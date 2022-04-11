@@ -6,7 +6,7 @@ const path = require("path");
 
 router.get('/', async (req, res) => {
 
-  res.end('<h1>Challenge Mercado Libre</h1><h3>Backend</h3\n');
+  res.end('<h1>Mercado Libre</h1><h3>Backend</h3\n');
 
 })
 
