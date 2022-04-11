@@ -5,7 +5,7 @@ import './SearchBar.scss'
 
 interface SearchBarProps {
     onInputChange: Function;
-    onClickHandler: () => void;
+    onClickHandler: Function;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ onInputChange, onClickHandler }): JSX.Element => {
@@ -17,13 +17,17 @@ const SearchBar: React.FC<SearchBarProps> = ({ onInputChange, onClickHandler }):
         setQuery('')
     }
 
+    const searchValue = () => {
+        onInputChange(query)
+    }
+
     return (
 
         <div>
             <div className='search-bar'>
 
                 <div className='search-bar__logo-container'>
-                    <img className='search-bar__logo-img' onClick={homeRedirect} src={LogoML} alt='logo-meli' />
+                    <img className='search-bar__logo-img' onClick={homeRedirect} src={LogoML} alt='logo-mercado-libre' />
                 </div>
 
                 <input
@@ -34,10 +38,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ onInputChange, onClickHandler }):
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setQuery(e.target.value); }}
                 />
 
-                <div className='search-bar__icon' onClick={() => {
-                    onInputChange(query)
-                }}>
-                    <img className='search-bar__logo-search' src={SearchIcon} alt='logo-meli' />
+                <div className='search-bar__icon' onClick={searchValue}>
+                    <img aria-label='buscador' role='button' className='search-bar__logo-search' src={SearchIcon} alt='buscar' />
                 </div>
 
             </div>

@@ -1,6 +1,6 @@
-import { CurrencyTypes } from '../enums/enums';
+import { ConditionOptions, CurrencyTypes } from '../enums/enums';
 
-interface Price {
+export interface Price {
     currency: CurrencyTypes,
     amount: number,
     decimals: number
@@ -12,6 +12,17 @@ export interface Product {
     picture: string,
     id: string,
     free_shipping: boolean,
-    condition: string,
+    condition: ConditionOptions,
     city: string;
+}
+export interface ProductDetail {
+    id: string;
+    title: string;
+    price: Price;
+    categories: string[];
+    condition: ConditionOptions;
+    description: string;
+    free_shipping: boolean;
+    picture: string;
+    sold_quantity: number;
 }

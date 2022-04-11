@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import { SearchProvider } from './providers/Search.provider'
 import ItemDetail from './components/ItemDetail/ItemDetail';
+import HomePage from './components/HomePage/HomePage';
 
 const App: React.FC = (): JSX.Element => {
 
@@ -14,7 +15,7 @@ const App: React.FC = (): JSX.Element => {
         <Routes>
           <Route
             path={SearchService.states.home}
-            element={<Layout />} />
+            element={<HomePage />} />
           <Route
             path={SearchService.states.search}
             element={<Layout />} />

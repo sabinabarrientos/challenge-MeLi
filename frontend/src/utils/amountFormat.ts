@@ -18,6 +18,20 @@ class AmountFormat {
             ? priceFormatted.split(',')[0]
             : priceFormatted
     }
+
+    static formatQuantity = (num: number): string => {
+
+        const formatter = new Intl.NumberFormat('es-AR', {
+            style: 'currency',
+            currency: 'ARS'
+        });
+
+        return (formatter.format(num))
+    }
+
+    static formatARSAmount = (amount: number): string => {
+        return (`$ ${amount.toLocaleString('es-AR')}`)
+    }
 }
 
 export default AmountFormat;

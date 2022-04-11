@@ -4,54 +4,49 @@ import ProductList from '../ProductList/ProductList';
 import './Layout.scss';
 import SearchService from '../../services/Search.service';
 import { SearchContext } from '../../providers/Search.provider';
-import { useNavigate } from 'react-router-dom';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
+import Loading from '../Loading/Loading';
 
 const Layout: React.FC = (): JSX.Element => {
 
     const context = useContext(SearchContext);
-    const history = useNavigate();
-
-    const [query, setQuery] = useState('');
+    const navigateTo = useNavigate();
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect((): void => {
-        SearchService.getProducts(query)
-            .then((data) => {
-                context.updateResult(data);
-            })
-            .catch((error) => { console.log(error) })
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        setIsLoading(false)
     }, [])
 
-    const getItems = (query: string): void => {
-        SearchService.getProducts(query)
-            .then((data) => {
-                context.updateResult(data);
-            })
-            .catch((error) => { console.log(error) })
-    }
 
-    const clickRedirect = (): void => {
-        getItems('')
-        history(SearchService.states.home)
+    const homeRedirect = (): void => {
+        navigateTo(SearchService.states.home);
     }
 
     const updateQuery = (query: string): void => {
-        setQuery(query);
+        const properUrl = `${SearchService.states.search}?search=${query}`;
         SearchService.getProducts(query)
             .then((data) => {
                 context.updateResult(data);
+                navigateTo(properUrl)
             })
             .catch((error) => { console.log(error) })
-        history(`${SearchService.states.search}?search=${query}`)
+            .finally(() => setIsLoading(false));
     }
+
+
 
     return (
         <>
-            <SearchBar onInputChange={updateQuery} onClickHandler={clickRedirect} />
+            <SearchBar onInputChange={updateQuery} onClickHandler={homeRedirect} />
+
+            {!!isLoading && <Loading />}
+
             <section className='layout__content'>
-                <Breadcrumb categories={context.data.searchResult.categories} />
-                <ProductList data={context.data.searchResult} />
+                {!isLoading && <>
+                    {context.data.searchResult.categories && <Breadcrumb categories={context.data.searchResult.categories} />}
+                    <ProductList data={context.data.searchResult} />
+                </>}
             </section>
         </>
     )

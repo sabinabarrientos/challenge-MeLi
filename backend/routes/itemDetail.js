@@ -22,7 +22,7 @@ router.get('/:id', async function (req, res) {
                 currency_id,
                 sold_quantity,
                 condition,
-                secure_thumbnail,
+                pictures,
                 descriptions: [],
                 shipping: { free_shipping }
             } = item.data;
@@ -56,7 +56,7 @@ router.get('/:id', async function (req, res) {
                         amount: parseInt(price),
                         decimals: parseInt(price.toFixed(2).toString().split('.')[1]),
                     },
-                    picture: secure_thumbnail,
+                    picture: pictures[0].secure_url,
                     condition,
                     free_shipping,
                     sold_quantity,

@@ -1,10 +1,10 @@
 import React from 'react'
-import { Result } from '../../models/Result.model';
+import { ItemsResult } from '../../models/Result.model';
 import ProductCard from '../ProductCard/ProductCard';
 import './ProductList.scss';
 
 export interface ProductListProps {
-    data: Result;
+    data: ItemsResult;
 }
 
 const ProductList: React.FC<ProductListProps> = ({ data }): JSX.Element => {

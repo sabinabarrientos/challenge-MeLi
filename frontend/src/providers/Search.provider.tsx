@@ -1,17 +1,18 @@
 import React, { createContext, useState } from 'react';
-import { Result } from '../models/Result.model';
+import { CurrencyTypes, ConditionOptions } from '../enums/enums';
+import { ItemsResult, ItemDetailResult } from '../models/Result.model';
 export interface SearchProviderData {
-    searchResult: Result;
-    selectedItem: string | undefined;
+    searchResult: ItemsResult;
+    itemDetail: ItemDetailResult;
 }
 
 export interface ItemsContextProps {
     data: SearchProviderData;
     updateResult: Function;
-    updateSelectedItem: Function;
+    updateItemDetail: Function;
 }
 
-export const defaultSearchResults: Result = {
+export const defaultSearchResults: ItemsResult = {
     author: {
         name: '',
         lastname: ''
@@ -20,36 +21,58 @@ export const defaultSearchResults: Result = {
     items: [],
 };
 
+export const defaultItemDetailResult: ItemDetailResult = {
+    author: {
+        name: '',
+        lastname: ''
+    },
+    item: {
+        id: '',
+        title: '',
+        price: {
+            currency: CurrencyTypes.arg,
+            amount: 0,
+            decimals: 0
+        },
+        categories: [],
+        condition: ConditionOptions.nuevo,
+        description: '',
+        free_shipping: false,
+        picture: '',
+        sold_quantity: 0,
+    }
+};
+
 export const defaultProviderData: SearchProviderData = {
     searchResult: defaultSearchResults,
-    selectedItem: undefined
+    itemDetail: defaultItemDetailResult
 };
 
 export const SearchContext = createContext<ItemsContextProps>({
     data: defaultProviderData,
     updateResult: Function,
-    updateSelectedItem: Function
+    updateItemDetail: Function
 });
 
 export const SearchProvider: React.FC = ({ children }) => {
     const [providerValue, setProviderValue] = useState(defaultProviderData);
 
-    const updateResult = (newResult: Result): void => {
+    const updateResult = (newResult: ItemsResult): void => {
         setProviderValue((prevValues) => {
             return { ...prevValues, searchResult: newResult };
         });
     };
 
-    const updateSelectedItem = (id: string): void => {
+    const updateItemDetail = (detail: ItemDetailResult): void => {
         setProviderValue((prevValues) => {
-            return { ...prevValues, selectedItem: id };
+            return { ...prevValues, itemDetail: detail };
         });
     };
 
     const providerData = {
         data: providerValue,
         updateResult,
-        updateSelectedItem
+        updateItemDetail
     };
 
     return (

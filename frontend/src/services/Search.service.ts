@@ -1,5 +1,7 @@
 import api, { getUrl } from '../api/api';
-import { Result } from '../models/Result.model';
+import { Product } from '../models/Product.model';
+import { ItemDetailResult, ItemsResult } from '../models/Result.model';
+import ItemDetail from '../components/ItemDetail/ItemDetail';
 
 export interface SearchStates {
     home: string;
@@ -16,7 +18,7 @@ class SearchService {
         };
     }
 
-    static getProducts(query: string): Promise<Result> {
+    static getProducts(query: string): Promise<ItemsResult> {
 
         return new Promise((resolve, reject) => {
 
@@ -24,7 +26,20 @@ class SearchService {
 
             apiResponse
                 .then((res) => {
-                    console.log(res.data)
+                    resolve(res.data)
+                })
+                .catch((error) => reject(error))
+        });
+    }
+
+    static getItemDetail(query: string): Promise<ItemDetailResult> {
+
+        return new Promise((resolve, reject) => {
+
+            const apiResponse = api.get(!!query ? getUrl.itemDetail(query) : getUrl.defaultItems);
+
+            apiResponse
+                .then((res) => {
                     resolve(res.data)
                 })
                 .catch((error) => reject(error))

@@ -1,0 +1,32 @@
+.button {
+
+    &__fullwidth,
+    &__normal {
+        background-color: #3483FA;
+        color: #FFF;
+        font-size: 12px;
+        border-radius: 4px;
+        padding: 0 1rem;
+
+        @media (min-width: 769px) {
+            font-size: 1rem;
+        }
+    }
+
+    &__fullwidth {
+        width: 100%;
+    }
+
+    &__normal {
+        padding: 0 3rem;
+    }
+
+    &__text {
+        padding: 0;
+        margin: 0.5rem;
+
+        @media (min-width: 769px) {
+            margin: 0.8rem;
+        }
+    }
+}
