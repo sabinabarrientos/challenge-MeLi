@@ -23,6 +23,13 @@ const SearchBar: React.FC<SearchBarProps> = ({ onInputChange, onClickHandler }):
         onInputChange( query );
     };
 
+    const submitHandler = ( e: React.KeyboardEvent ): void => {
+        if ( e.key === 'Enter' ) {
+            onInputChange( query );
+            setQuery( '' );
+        }
+    };
+
     return (
 
         <div>
@@ -42,6 +49,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onInputChange, onClickHandler }):
                     placeholder="Nunca dejes de buscar"
                     aria-label='Nunca dejes de buscar'
                     value={query}
+                    onKeyUp={( e: React.KeyboardEvent ): void => { submitHandler( e ); }}
                     onChange={ ( e: React.ChangeEvent<HTMLInputElement> ): void => { setQuery( e.target.value ); }}
                 />
 
