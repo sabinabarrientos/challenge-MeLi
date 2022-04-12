@@ -1,6 +1,5 @@
-import React from 'react'
+import React from 'react';
 import './Loading.scss';
-
 
 const Loading: React.FC = (): JSX.Element => {
 
@@ -16,7 +15,6 @@ const Loading: React.FC = (): JSX.Element => {
             </button>
         </div>
     );
-}
-
+};
 
 export default Loading;

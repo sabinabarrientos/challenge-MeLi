@@ -1,12 +1,11 @@
 import api, { getUrl } from '../api/api';
-import { Product } from '../models/Product.model';
 import { ItemDetailResult, ItemsResult } from '../models/Result.model';
-import ItemDetail from '../components/ItemDetail/ItemDetail';
 
 export interface SearchStates {
     home: string;
     search: string;
     detail: string;
+    error: string;
 }
 
 class SearchService {
@@ -14,37 +13,38 @@ class SearchService {
         return {
             home: '/',
             search: '/items',
-            detail: '/items/'
+            detail: '/items/',
+            error: '/error'
         };
     }
 
-    static getProducts(query: string): Promise<ItemsResult> {
+    static getProducts( query: string ): Promise<ItemsResult> {
 
-        return new Promise((resolve, reject) => {
+        return new Promise( ( resolve, reject ) => {
 
-            const apiResponse = api.get(!!query ? getUrl.searchItems(query) : getUrl.defaultItems);
+            const apiResponse = api.get( !!query ? getUrl.searchItems( query ) : getUrl.defaultItems );
 
             apiResponse
-                .then((res) => {
-                    resolve(res.data)
+                .then( ( res ) => {
+                    resolve( res.data );
                 })
-                .catch((error) => reject(error))
+                .catch( ( error ) => reject( error ) );
         });
     }
 
-    static getItemDetail(query: string): Promise<ItemDetailResult> {
+    static getItemDetail( query: string ): Promise<ItemDetailResult> {
 
-        return new Promise((resolve, reject) => {
+        return new Promise( ( resolve, reject ) => {
 
-            const apiResponse = api.get(!!query ? getUrl.itemDetail(query) : getUrl.defaultItems);
+            const apiResponse = api.get( !!query ? getUrl.itemDetail( query ) : getUrl.defaultItems );
 
             apiResponse
-                .then((res) => {
-                    resolve(res.data)
+                .then( ( res ) => {
+                    resolve( res.data );
                 })
-                .catch((error) => reject(error))
+                .catch( ( error ) => reject( error ) );
         });
     }
-};
+}
 
 export default SearchService;

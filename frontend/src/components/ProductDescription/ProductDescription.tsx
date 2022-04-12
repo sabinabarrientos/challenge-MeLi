@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import './ProductDescription.scss';
 
 export interface ProductDescriptionProps {
@@ -13,7 +13,7 @@ const ProductDescription: React.FC<ProductDescriptionProps> = ({ title, descript
             <h4 className='product-description__title'>{title}</h4>
             <p className='product-description__description'>{description}</p>
         </>
-    )
-}
+    );
+};
 
 export default ProductDescription;

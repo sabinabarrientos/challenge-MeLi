@@ -5,26 +5,31 @@ import { useNavigate } from 'react-router-dom';
 import Loading from '../Loading/Loading';
 
 const HomePage: React.FC = (): JSX.Element => {
+
     const navigateTo = useNavigate();
-    const [isLoading, setIsLoading] = useState(false);
+    const [ isLoading, setIsLoading ] = useState( false );
 
     const homeRedirect = (): void => {
-        navigateTo(SearchService.states.home);
-    }
+        navigateTo( SearchService.states.home );
+    };
 
-    const updateQuery = (query: string): void => {
-        setIsLoading(true)
+    const updateQuery = ( query: string ): void => {
+        setIsLoading( true );
         const properUrl = `${SearchService.states.search}?search=${query}`;
-        navigateTo(properUrl)
-    }
+        navigateTo( properUrl );
+    };
 
     return (
         <>
-            <SearchBar onInputChange={updateQuery} onClickHandler={homeRedirect} />
+            <SearchBar
+                onInputChange={updateQuery}
+                onClickHandler={homeRedirect}
+            />
+
             {!!isLoading && <Loading />}
         </>
-    )
+    );
 
-}
+};
 
 export default HomePage;

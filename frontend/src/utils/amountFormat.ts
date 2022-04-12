@@ -1,37 +1,37 @@
-import { CurrencyTypes } from "../enums/enums"
+import { CurrencyTypes } from '../enums/enums';
 
 class AmountFormat {
 
-    static formatPriceARS = (currency: CurrencyTypes, amount: number, decimals: number): string => {
+    static formatPriceARS = ( currency: CurrencyTypes, amount: number, decimals: number ): string => {
 
-        const formatter = new Intl.NumberFormat('es-AR', {
+        const formatter = new Intl.NumberFormat( 'es-AR', {
             style: 'currency',
             currency: 'ARS'
         });
 
         const price = currency === CurrencyTypes.arg ?
-            decimals > 0 ? (`${amount}.${decimals}`) : `${amount}`
+            decimals > 0 ? ( `${amount}.${decimals}` ) : `${amount}`
             : '';
-        const priceFormatted = formatter.format(parseFloat(price))
+        const priceFormatted = formatter.format( parseFloat( price ) );
         return (
-            priceFormatted.split(',')[1] === '00')
-            ? priceFormatted.split(',')[0]
-            : priceFormatted
-    }
+            priceFormatted.split( ',' )[1] === '00' )
+            ? priceFormatted.split( ',' )[0]
+            : priceFormatted;
+    };
 
-    static formatQuantity = (num: number): string => {
+    static formatQuantity = ( num: number ): string => {
 
-        const formatter = new Intl.NumberFormat('es-AR', {
+        const formatter = new Intl.NumberFormat( 'es-AR', {
             style: 'currency',
             currency: 'ARS'
         });
 
-        return (formatter.format(num))
-    }
+        return ( formatter.format( num ) );
+    };
 
-    static formatARSAmount = (amount: number): string => {
-        return (`$ ${amount.toLocaleString('es-AR')}`)
-    }
+    static formatARSAmount = ( amount: number ): string => {
+        return ( `$ ${amount.toLocaleString( 'es-AR' )}` );
+    };
 }
 
 export default AmountFormat;

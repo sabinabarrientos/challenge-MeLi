@@ -8,7 +8,9 @@ export interface SearchProviderData {
 
 export interface ItemsContextProps {
     data: SearchProviderData;
+    // eslint-disable-next-line @typescript-eslint/ban-types
     updateResult: Function;
+    // eslint-disable-next-line @typescript-eslint/ban-types
     updateItemDetail: Function;
 }
 
@@ -18,7 +20,7 @@ export const defaultSearchResults: ItemsResult = {
         lastname: ''
     },
     categories: [],
-    items: [],
+    items: []
 };
 
 export const defaultItemDetailResult: ItemDetailResult = {
@@ -39,7 +41,7 @@ export const defaultItemDetailResult: ItemDetailResult = {
         description: '',
         free_shipping: false,
         picture: '',
-        sold_quantity: 0,
+        sold_quantity: 0
     }
 };
 
@@ -55,16 +57,16 @@ export const SearchContext = createContext<ItemsContextProps>({
 });
 
 export const SearchProvider: React.FC = ({ children }) => {
-    const [providerValue, setProviderValue] = useState(defaultProviderData);
+    const [ providerValue, setProviderValue ] = useState( defaultProviderData );
 
-    const updateResult = (newResult: ItemsResult): void => {
-        setProviderValue((prevValues) => {
+    const updateResult = ( newResult: ItemsResult ): void => {
+        setProviderValue( ( prevValues ) => {
             return { ...prevValues, searchResult: newResult };
         });
     };
 
-    const updateItemDetail = (detail: ItemDetailResult): void => {
-        setProviderValue((prevValues) => {
+    const updateItemDetail = ( detail: ItemDetailResult ): void => {
+        setProviderValue( ( prevValues ) => {
             return { ...prevValues, itemDetail: detail };
         });
     };

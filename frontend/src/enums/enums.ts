@@ -8,7 +8,6 @@ export enum PictureSizes {
     large = 'large'
 }
 
-
 export enum ButtonSizes {
     fullwidth = 'fullwidth',
     normal = 'normal'
