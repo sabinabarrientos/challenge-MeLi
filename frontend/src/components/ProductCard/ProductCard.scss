@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .product-card {
 
     &__content {
@@ -82,7 +84,7 @@
     }
 
     &__divider {
-        border: 0.5px solid #EEE;
+        border: 0.5px solid $meli-background-light-grey;
         margin: 0 3rem;
     }
 }

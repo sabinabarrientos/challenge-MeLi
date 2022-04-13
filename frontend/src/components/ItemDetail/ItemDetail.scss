@@ -1,8 +1,10 @@
+@import '../../styles/variables.scss';
+
 .item-detail {
 
     &__container {
         padding: 1rem;
-        background-color: #EEE;
+        background-color: $meli-background-light-grey;
 
         @media (min-width: 769px) {
             padding: 1rem 4rem;
@@ -10,7 +12,7 @@
     }
 
     &__content {
-        background-color: #FFF;
+        background-color: $meli-background-white;
         padding: 1rem;
 
         @media (min-width: 480px) {

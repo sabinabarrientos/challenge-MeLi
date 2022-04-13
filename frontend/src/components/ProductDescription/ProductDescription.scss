@@ -1,7 +1,9 @@
+@import '../../styles/variables.scss';
+
 .product-description {
     &__title {
         font-weight: 350;
-        color: #333;
+        color: $meli-text-dark-grey;
         margin: 0;
         font-size: 18px;
 

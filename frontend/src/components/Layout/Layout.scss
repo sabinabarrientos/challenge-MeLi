@@ -1,7 +1,9 @@
+@import '../../styles/variables.scss';
+
 .layout {
     &__content {
         padding: 1rem;
-        background-color: #EEE;
+        background-color: $meli-background-light-grey;
 
         @media (min-width: 769px) {
             padding: 1rem 4rem;

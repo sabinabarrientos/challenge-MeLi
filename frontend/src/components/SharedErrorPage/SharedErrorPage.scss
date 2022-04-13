@@ -1,6 +1,8 @@
+@import '../../styles/variables.scss';
+
 .shared-error-page {
     &__container{
-        background-color: #EEE;
+        background-color: $meli-background-light-grey;
         min-height: 100vh;
         min-width:  100vw;
         display: flex;

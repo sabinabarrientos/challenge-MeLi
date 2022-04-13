@@ -1,9 +1,7 @@
+@import '../../styles/variables.scss';
+
 .product-list {
     &__list {
-        background-color: #FFF;
-
-        @media (min-width: 769px) {
-            // padding: 2rem 4rem;
-        }
+        background-color: $meli-background-white;
     }
 }

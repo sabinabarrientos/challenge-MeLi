@@ -1,9 +1,11 @@
+@import '../../styles/variables.scss';
+
 .button {
 
     &__fullwidth,
     &__normal {
-        background-color: #3483FA;
-        color: #FFF;
+        background-color: $meli-background-blue;
+        color: $meli-background-white;
         font-size: 12px;
         border-radius: 4px;
         padding: 0 1rem;
