@@ -6,6 +6,8 @@ export interface SearchStates {
     search: string;
     detail: string;
     error: string;
+    success: string;
+
 }
 
 class SearchService {
@@ -14,7 +16,8 @@ class SearchService {
             home: '/',
             search: '/items',
             detail: '/items/',
-            error: '/error'
+            error: '/error',
+            success: '/success'
         };
     }
 

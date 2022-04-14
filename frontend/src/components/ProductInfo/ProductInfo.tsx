@@ -1,9 +1,11 @@
 import React from 'react';
-import { ButtonSizes, ConditionOptions } from '../../enums/enums';
+import { useNavigate } from 'react-router-dom';
+import { ButtonSizes, ConditionOptions, OperationResult } from '../../enums/enums';
 import { Price } from '../../models/Product.model';
 import amountFormat from '../../utils/amountFormat';
 import Button from '../Button/Button';
 import './ProductInfo.scss';
+import SearchService from '../../services/Search.service';
 
 export interface ProductInfoProps {
     condition: string;
@@ -13,9 +15,10 @@ export interface ProductInfoProps {
 }
 
 const ProductInfo: React.FC<ProductInfoProps> = ({ condition, sold, title, price }): JSX.Element => {
+    const navigateTo = useNavigate();
 
     const addToCart = (): void => {
-        alert( 'compraste el producto' );
+        navigateTo( SearchService.states.success, { state: OperationResult.success });
     };
 
     const properCondition = ( condition: string ): string => {

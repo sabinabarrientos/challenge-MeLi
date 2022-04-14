@@ -8,6 +8,7 @@ import Breadcrumb from '../Breadcrumb/Breadcrumb';
 import Loading from '../Loading/Loading';
 import { usePageTitle } from '../../hooks/usePageTitle';
 import './Layout.scss';
+import { OperationResult } from '../../enums/enums';
 
 const Layout: React.FC = (): JSX.Element => {
     const location = useLocation();
@@ -22,7 +23,7 @@ const Layout: React.FC = (): JSX.Element => {
             .then( ( data ) => {
                 context.updateResult( data );
             })
-            .catch( () => navigateTo( SearchService.states.error ) )
+            .catch( () => navigateTo( SearchService.states.error, { state: OperationResult.error }) )
             .finally( () => setIsLoading( false ) );
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [] );
@@ -43,7 +44,7 @@ const Layout: React.FC = (): JSX.Element => {
                 context.updateResult( data );
                 navigateTo( properUrl );
             })
-            .catch( () => navigateTo( SearchService.states.error ) )
+            .catch( () => navigateTo( SearchService.states.error, { state: OperationResult.error }) )
             .finally( () => setIsLoading( false ) );
     };
 

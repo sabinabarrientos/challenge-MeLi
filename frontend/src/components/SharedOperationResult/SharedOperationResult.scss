@@ -1,0 +1,55 @@
+@import '../../styles/variables.scss';
+
+.shared-operation-result {
+    &__container{
+        background-color: $meli-background-light-grey;
+        min-height: 100vh;
+        min-width:  100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    &__success {
+        &__title {
+            font-size: 26px;
+            font-weight: 400;
+            margin: 0.5rem;
+            @media (min-width: 769px) {
+                font-size: 30px;
+            }
+        }
+        
+            &__subtitle {
+                font-size: 16px;
+                text-align: center;
+                margin: 1rem 1rem 3rem 1rem;
+                font-weight: 300;
+                
+                @media (min-width: 769px) {
+                    font-size: 20px;
+                }
+            }
+    }
+    &__error {
+        &__title {
+            font-size: 38px;
+            font-weight: 500;
+            margin: 0.5rem;
+            @media (min-width: 769px) {
+                font-size: 48px;
+            }
+        }
+        
+            &__subtitle {
+                font-size: 16px;
+                text-align: center;
+                margin: 1rem 1rem 3rem 1rem;
+                font-weight: 300;
+                
+                @media (min-width: 769px) {
+                    font-size: 18px;
+                }
+            }
+    }
+}

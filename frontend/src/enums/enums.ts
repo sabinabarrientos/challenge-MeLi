@@ -17,3 +17,8 @@ export enum ConditionOptions {
     nuevo = 'new',
     usado = 'used',
 }
+
+export enum OperationResult {
+    success = 'success',
+    error = 'error'
+}

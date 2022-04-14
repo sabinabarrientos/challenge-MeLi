@@ -5,7 +5,7 @@ import Layout from './components/Layout/Layout';
 import { SearchProvider } from './providers/Search.provider';
 import ItemDetail from './components/ItemDetail/ItemDetail';
 import HomePage from './components/HomePage/HomePage';
-import SharedErrorPage from './components/SharedErrorPage/SharedErrorPage';
+import SharedOperationResult from './components/SharedOperationResult/SharedOperationResult';
 
 const App: React.FC = (): JSX.Element => {
 
@@ -25,7 +25,10 @@ const App: React.FC = (): JSX.Element => {
                         element={<ItemDetail />} />
                     <Route
                         path={SearchService.states.error}
-                        element={<SharedErrorPage />} />
+                        element={<SharedOperationResult />} />
+                    <Route
+                        path={SearchService.states.success}
+                        element={<SharedOperationResult />} />
 
                 </Routes>
             </SearchProvider>
