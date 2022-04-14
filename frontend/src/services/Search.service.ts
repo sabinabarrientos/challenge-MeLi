@@ -11,6 +11,9 @@ export interface SearchStates {
 }
 
 class SearchService {
+    /**
+    * Returns the routes for child components
+    */
     static get states(): SearchStates {
         return {
             home: '/',
@@ -21,6 +24,10 @@ class SearchService {
         };
     }
 
+    /**
+    * Gets a list of products given a query
+    * @params query - Search term
+    */
     static getProducts( query: string ): Promise<ItemsResult> {
 
         return new Promise( ( resolve, reject ) => {
@@ -35,11 +42,15 @@ class SearchService {
         });
     }
 
-    static getItemDetail( query: string ): Promise<ItemDetailResult> {
+    /**
+    * Gets the detail of a given product id
+    * @params id - Product ID
+    */
+    static getItemDetail( id: string ): Promise<ItemDetailResult> {
 
         return new Promise( ( resolve, reject ) => {
 
-            const apiResponse = api.get( !!query ? getUrl.itemDetail( query ) : getUrl.defaultItems );
+            const apiResponse = api.get( !!id ? getUrl.itemDetail( id ) : getUrl.defaultItems );
 
             apiResponse
                 .then( ( res ) => {
