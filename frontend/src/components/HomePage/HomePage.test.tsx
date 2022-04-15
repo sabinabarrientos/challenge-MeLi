@@ -10,16 +10,23 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom';
 describe( 'HomePage', () => {
     let wrapper: RenderResult;
 
-    test( 'saranga', ()=> {
-        wrapper = act ( () => {
-            render(
-                <BrowserRouter>
-                    <Routes>
-                        <Route path='/' element={HomePage}>
-                        </Route>
-                    </Routes>
-                </BrowserRouter> );
+    const getRender = (): RenderResult => {
+        return render(
+            <BrowserRouter>
+                <SearchProvider>
+                    <HomePage/>
+                </SearchProvider>
+            </BrowserRouter> );
+    };
+
+    beforeEach( async ()=>{
+        await act( ()=> {
+            wrapper = getRender();
+            return Promise.resolve();
         });
+    });
+
+    test( 'saranga', ()=> {
         const component = wrapper.container.querySelector( '.home-page' );
         expect( component ).toBeInTheDocument();
     });
