@@ -4,23 +4,19 @@
     &__list {
         padding: 0 0 1rem 0;
         font-size: 12px;
-
         @media (min-width: 768px) {
             font-size: 16px;
 
         }
-
-        &__last-cat {
+        &__categories {
+            height: 20px;
             text-decoration: none;
-            font-weight: 500;
             color: $meli-text-grey;
-            margin-left: 0.3rem;
+            margin: 0 0.3rem 0 0;
         }
 
-        &__categories {
-            text-decoration: none;
-            color: $meli-text-grey;
-
+        &__categories:last-child {
+            font-weight: 600;
         }
     }
 }

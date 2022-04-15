@@ -20,14 +20,14 @@ const HomePage: React.FC = (): JSX.Element => {
     };
 
     return (
-        <>
+        <section className='home-page'>
             <SearchBar
                 onInputChange={updateQuery}
                 onClickHandler={homeRedirect}
             />
 
             {!!isLoading && <Loading />}
-        </>
+        </section>
     );
 
 };
