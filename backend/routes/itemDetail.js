@@ -2,7 +2,11 @@ var express = require('express');
 var router = express.Router();
 var axios = require('axios');
 
-//get item detail data
+/**
+* Gets the detail of a given product id
+* @params id - Product ID
+*/
+
 router.get('/:id', async function (req, res) {
 
     const itemId = req.params.id;

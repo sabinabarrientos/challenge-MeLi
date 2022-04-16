@@ -2,7 +2,11 @@ var express = require('express');
 var router = express.Router();
 var axios = require('axios');
 
-// get items data
+/**
+* Gets a list of products given a query
+* @params query - Search term
+*/
+
 router.get('/', async (req, res) => {
 
     (async function getItems() {
