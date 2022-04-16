@@ -20,7 +20,7 @@ const HomePage: React.FC = (): JSX.Element => {
     };
 
     return (
-        <section className='home-page'>
+        <section className='sid-home-page'>
             <SearchBar
                 onInputChange={updateQuery}
                 onClickHandler={homeRedirect}

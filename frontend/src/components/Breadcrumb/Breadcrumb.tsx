@@ -8,9 +8,9 @@ export interface BreadcrumbProps {
 const Breadcrumb: React.FC<BreadcrumbProps> = ({ categories }): JSX.Element => {
 
     return (
-        <>
+        <section className='sid-breadcrumb'>
             {!!categories && !!categories.length &&
-                <section className='breadcrumb__list'>
+                <section className='sid-breadcrumb__list breadcrumb__list'>
                     {categories.map( ( elem, index ) =>
                         <span
                             key={index}
@@ -21,7 +21,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ categories }): JSX.Element => {
                         </span>
                     )}
                 </section>}
-        </>
+        </section>
     );
 };
 

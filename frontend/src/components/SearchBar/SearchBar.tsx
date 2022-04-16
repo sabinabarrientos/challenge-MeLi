@@ -3,7 +3,7 @@ import LogoML from '../../assets/Logo_ML@2x.png.png';
 import SearchIcon from '../../assets/ic_Search@2x.png.png';
 import './SearchBar.scss';
 
-interface SearchBarProps {
+export interface SearchBarProps {
     // eslint-disable-next-line @typescript-eslint/ban-types
     onInputChange: Function;
     // eslint-disable-next-line @typescript-eslint/ban-types
@@ -33,9 +33,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ onInputChange, onClickHandler }):
     return (
 
         <div>
-            <div className='search-bar'>
+            <div className='sid-search-bar search-bar'>
 
-                <div className='search-bar__logo-container'>
+                <div className='sid-search-bar__logo-container search-bar__logo-container'>
                     <img
                         className='search-bar__logo-img'
                         onClick={homeRedirect}
@@ -45,7 +45,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onInputChange, onClickHandler }):
                 </div>
 
                 <input
-                    className='search-bar__input'
+                    className='sid-search-bar__input search-bar__input'
                     placeholder="Nunca dejes de buscar"
                     aria-label='Nunca dejes de buscar'
                     value={query}
@@ -53,7 +53,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onInputChange, onClickHandler }):
                     onChange={ ( e: React.ChangeEvent<HTMLInputElement> ): void => { setQuery( e.target.value ); }}
                 />
 
-                <div className='search-bar__icon' onClick={searchValue}>
+                <div className='sid-search-bar__icon search-bar__icon' onClick={searchValue}>
                     <img
                         aria-label='buscador'
                         role='button'

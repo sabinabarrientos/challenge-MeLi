@@ -54,7 +54,7 @@ const ItemDetail: React.FC = (): JSX.Element => {
     };
 
     return (
-        <>
+        <section className='sid-item-detail'>
             <SearchBar
                 onInputChange={updateQuery}
                 onClickHandler={homeRedirect}
@@ -64,15 +64,15 @@ const ItemDetail: React.FC = (): JSX.Element => {
             {!isLoading &&
                 <section className='item-detail__container'>
                     <Breadcrumb categories={context.data.itemDetail.item.categories} />
-                    <section className='item-detail__content'>
+                    <section className='sid-item-detail__content item-detail__content'>
 
-                        <section className='item-detail__info'>
+                        <section className='sid-item-detail__info item-detail__info'>
                             <Picture
                                 src={context.data.itemDetail.item.picture}
                                 alt='imagen del producto'
                                 size={PictureSizes.large}
                             />
-                            <aside className='item-detail__aside'>
+                            <aside className='sid-item-detail__aside item-detail__aside'>
                                 <ProductInfo
                                     condition={context.data.itemDetail.item.condition}
                                     sold={context.data.itemDetail.item.sold_quantity}
@@ -82,7 +82,7 @@ const ItemDetail: React.FC = (): JSX.Element => {
                             </aside>
                         </section>
 
-                        <section className='item-detail__description'>
+                        <section className='sid-item-detail__description item-detail__description'>
                             <ProductDescription
                                 title='Descripción del producto'
                                 description={context.data.itemDetail.item.description}
@@ -92,7 +92,7 @@ const ItemDetail: React.FC = (): JSX.Element => {
 
                 </section>
             }
-        </>
+        </section>
     );
 };
 

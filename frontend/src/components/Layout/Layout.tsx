@@ -49,7 +49,7 @@ const Layout: React.FC = (): JSX.Element => {
     };
 
     return (
-        <>
+        <section className='sid-layout'>
             <SearchBar
                 onInputChange={updateQuery}
                 onClickHandler={homeRedirect} />
@@ -64,7 +64,7 @@ const Layout: React.FC = (): JSX.Element => {
                     <ProductList data={context.data.searchResult} />
                 </>}
             </section>
-        </>
+        </section>
     );
 };
 

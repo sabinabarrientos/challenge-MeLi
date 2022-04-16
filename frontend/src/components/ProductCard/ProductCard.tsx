@@ -23,7 +23,7 @@ const ProductCard: React.FC<ProductListProps> = ({
     };
 
     return (
-        <section>
+        <section className='sid-product-card'>
 
             <section
                 className='product-card__content'

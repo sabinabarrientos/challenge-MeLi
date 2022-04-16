@@ -1,11 +1,9 @@
 import React  from 'react';
 import { render, RenderResult } from '@testing-library/react';
-import { create, act } from 'react-test-renderer';
-import renderer from 'react-test-renderer';
-
-import { ItemsContextProps, SearchContext, SearchProvider } from '../../providers/Search.provider';
+import { act } from 'react-test-renderer';
+import { SearchProvider } from '../../providers/Search.provider';
 import HomePage from './HomePage';
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 describe( 'HomePage', () => {
     let wrapper: RenderResult;
@@ -26,9 +24,9 @@ describe( 'HomePage', () => {
         });
     });
 
-    test( 'saranga', ()=> {
-        const component = wrapper.container.querySelector( '.home-page' );
-        expect( component ).toBeInTheDocument();
+    test( 'Should render without error', ()=> {
+        const element = wrapper.container.querySelector( '.sid-home-page' );
+        expect( element ).toBeInTheDocument();
     });
 
 });

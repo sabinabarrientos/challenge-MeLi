@@ -14,10 +14,10 @@ const Button: React.FC<ButtonProps> = ({ handleOnClick, text, size }): JSX.Eleme
         <button
             aria-label={text}
             type='button'
-            className={`button__${size}`}
+            className={`sid-button__${size} button__${size}`}
             onClick={handleOnClick}
         >
-            <p className='button__text'>
+            <p className='sid-button__text button__text'>
                 {text}
             </p>
         </button>
