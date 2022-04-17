@@ -1,16 +1,19 @@
 import React  from 'react';
-import { cleanup, render, RenderResult } from '@testing-library/react';
+import { cleanup, fireEvent, render, RenderResult } from '@testing-library/react';
 import { act } from 'react-test-renderer';
-import { SearchProvider } from '../../providers/Search.provider';
+import { defaultSearchResults, SearchProvider } from '../../providers/Search.provider';
 import { BrowserRouter } from 'react-router-dom';
 import SearchBar, { SearchBarProps } from './SearchBar';
+import SearchService from '../../services/Search.service';
+import { ItemsResult } from '../../models/Result.model';
 
 describe( 'SearchBar', () => {
-    let wrapper: RenderResult;
+    let wrapper: RenderResult,
+        getProductsSpy: jest.SpyInstance<Promise<ItemsResult>>;
 
     const mockSearchBarProps: SearchBarProps = {
-        onInputChange: ()=> alert( 'new search' ),
-        onClickHandler: ()=> alert( 'logo clicked' )
+        onInputChange: ()=> window.alert( 'new search' ),
+        onClickHandler: ()=> window.alert( 'logo clicked' )
     };
 
     const getRender = ( mockSearchBarProps: SearchBarProps ): RenderResult => {
@@ -26,10 +29,17 @@ describe( 'SearchBar', () => {
 
     afterEach( () => {
         cleanup();
+        getProductsSpy.mockClear();
+    });
+
+    beforeAll( () => {
+        getProductsSpy = jest.spyOn( SearchService, 'getProducts' );
     });
 
     beforeEach( async ()=>{
         window.alert = jest.fn();
+        getProductsSpy.mockReturnValue( Promise.resolve( defaultSearchResults ) );
+
         await act( ()=> {
             wrapper = getRender( mockSearchBarProps );
             return Promise.resolve();
@@ -44,6 +54,91 @@ describe( 'SearchBar', () => {
         expect( element ).toBeInTheDocument();
         expect( logo ).toBeInTheDocument();
         expect( input ).toBeInTheDocument();
+    });
+
+    test( 'Should execute function on button clicked', async ()=> {
+        const input = wrapper.container.querySelector( '.sid-search-bar__input' );
+        const submitButton = wrapper.container.querySelector( '.search-bar__logo-search' );
+        expect( input ).toBeInTheDocument();
+        expect( submitButton ).toBeInTheDocument();
+
+        if ( input ) {
+            await act( () => {
+                fireEvent.change( input,  {
+                    target: {
+                        value: 'query'
+                    }
+                });
+                return Promise.resolve();
+            });
+        }
+
+        if ( submitButton ) {
+            await act( () => {
+                fireEvent.click ( submitButton );
+            });
+            return Promise.resolve();
+        }
+
+        expect( window.alert ).toHaveBeenCalled();
+
+    });
+
+    test( 'Should execute function on Enter key pressed', async ()=> {
+        const input = wrapper.container.querySelector( '.sid-search-bar__input' );
+
+        expect( input ).toBeInTheDocument();
+
+        if ( input ) {
+            await act( () => {
+                fireEvent.change( input,  {
+                    target: {
+                        value: 'query'
+                    }
+                });
+                return Promise.resolve();
+            });
+            fireEvent.keyUp( input, { key: 'Enter' });
+        }
+
+        expect( window.alert ).toHaveBeenCalled();
+
+    });
+
+    test( 'Should not execute function on any key pressed', async ()=> {
+        const input = wrapper.container.querySelector( '.sid-search-bar__input' );
+
+        expect( input ).toBeInTheDocument();
+
+        if ( input ) {
+            await act( () => {
+                fireEvent.change( input,  {
+                    target: {
+                        value: 'query'
+                    }
+                });
+                return Promise.resolve();
+            });
+            fireEvent.keyUp( input, { key: 'h' });
+        }
+
+        expect( window.alert ).not.toHaveBeenCalled();
+
+    });
+
+    test( 'Should execute function on logo clicked ', async ()=> {
+        const logo = wrapper.container.querySelector( '.search-bar__logo-img' );
+        expect( logo ).toBeInTheDocument();
+
+        if ( logo ) {
+            await act( () => {
+                fireEvent.click ( logo );
+            });
+            return Promise.resolve();
+        }
+
+        expect( window.alert ).toHaveBeenCalled();
+
     });
 
 });

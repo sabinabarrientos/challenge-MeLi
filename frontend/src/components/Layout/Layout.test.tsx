@@ -2,12 +2,10 @@ import React  from 'react';
 import { cleanup, render, RenderResult } from '@testing-library/react';
 import { act } from 'react-test-renderer';
 import { defaultSearchResults, SearchProvider } from '../../providers/Search.provider';
-import reactRouterDom from 'react-router-dom';
-import { BrowserRouter, useHistory } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import Layout from './Layout';
 import SearchService from '../../services/Search.service';
 import { ItemsResult } from '../../models/Result.model';
-import {createMemoryHistory} from 'history';
 
 describe( 'Layout', () => {
     let wrapper: RenderResult,
