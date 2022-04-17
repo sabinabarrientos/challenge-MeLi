@@ -58,7 +58,7 @@ describe( 'HomePage', () => {
 
     });
 
-    test( 'Should call service on new search term', async ()=> {
+    test( 'Should redirect on new search term', async ()=> {
         const input = wrapper.container.querySelector( '.sid-search-bar__input' );
 
         expect( input ).toBeInTheDocument();
