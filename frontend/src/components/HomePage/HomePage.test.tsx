@@ -72,7 +72,7 @@ describe( 'HomePage', () => {
                 });
                 return Promise.resolve();
             });
-            fireEvent.keyUp( input, { key: 'h' });
+            fireEvent.keyUp( input, { key: 'Enter' });
         }
 
         expect( mockedUsedNavigate ).toHaveBeenCalledWith( SearchService.states.search );
