@@ -18,10 +18,12 @@ const SharedOperationResult: React.FC = (): JSX.Element => {
     const buttonText = state === OperationResult.success ? 'Seguir comprando' : 'Volver al inicio';
 
     return (
-        <section className='shared-operation-result__container'>
+        <section className='sid-shared-operation-result__container shared-operation-result__container'>
 
-            <h1 className={`shared-operation-result__${state}__title`}>{ title }</h1>
-            <h3 className={`shared-operation-result__${state}__subtitle`}>{subtitle}</h3>
+            <h1 className={`sid-shared-operation-result__${state}__title
+            shared-operation-result__${state}__title`}>{ title }</h1>
+            <h3 className={`sid-shared-operation-result__${state}__subtitle
+            shared-operation-result__${state}__subtitle`}>{subtitle}</h3>
 
             <Button size={ButtonSizes.normal} text={buttonText} handleOnClick={homeRedirect}/>
         </section>

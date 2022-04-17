@@ -4,7 +4,7 @@ import './Loading.scss';
 const Loading: React.FC = (): JSX.Element => {
 
     return (
-        <div className='loading__page'>
+        <div className='sid-loading__page loading__page'>
 
             <button
                 aria-label='loader'

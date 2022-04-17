@@ -29,13 +29,13 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ condition, sold, title, price
     };
 
     return (
-        <section className='product-info__content'>
+        <section className='sid-product-info__content product-info__content'>
 
-            <h5 className='product-info__condition'>
+            <h5 className='sid-product-info__condition product-info__condition'>
                 {`${properCondition( condition )} - ${( sold.toLocaleString( 'es-AR' ) )} vendidos`}
             </h5>
-            <h3 className='product-info__title'>{title}</h3>
-            <div className='product-info__amount'>
+            <h3 className='sid-product-info__title product-info__title'>{title}</h3>
+            <div className='sid-product-info__amount product-info__amount'>
 
                 <h2 className='product-info__price'>{amountFormat.formatARSAmount( price.amount )}</h2>
                 {price.decimals > 0 &&

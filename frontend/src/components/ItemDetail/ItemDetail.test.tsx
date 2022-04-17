@@ -1,24 +1,18 @@
 import React  from 'react';
-import { cleanup, render, RenderResult } from '@testing-library/react';
+import { fireEvent, render, RenderResult } from '@testing-library/react';
 import { act } from 'react-test-renderer';
-import { SearchProvider, defaultItemDetailResult } from '../../providers/Search.provider';
-import { BrowserRouter, useNavigate } from 'react-router-dom';
+import { SearchProvider, defaultItemDetailResult, defaultSearchResults } from '../../providers/Search.provider';
+import { BrowserRouter } from 'react-router-dom';
 import ItemDetail from './ItemDetail';
 import SearchService from '../../services/Search.service';
-import { ItemDetailResult } from '../../models/Result.model';
-import { wait } from '@testing-library/user-event/dist/utils';
+import { ItemDetailResult, ItemsResult } from '../../models/Result.model';
+import { mockedUsedNavigate } from '../../setupTests';
+import { OperationResult } from '../../enums/enums';
 
 describe( 'ItemDetail', () => {
     let wrapper: RenderResult,
-        getItemDetailSpy: jest.SpyInstance<Promise<ItemDetailResult>>;
-
-    const mockedNavigator = jest.fn();
-    jest.mock( 'react-router-dom', () => ({
-        ...( jest.requireActual( 'react-router-dom' ) as any ),
-        useNavigate: () => ({
-            navigate: jest.fn().mockImplementation( () => ({}) )
-        })
-    }) );
+        getItemDetailSpy: jest.SpyInstance<Promise<ItemDetailResult>>,
+        getProductsSpy: jest.SpyInstance<Promise<ItemsResult>>;
 
     const getRender = (): RenderResult => {
         return render(
@@ -30,16 +24,18 @@ describe( 'ItemDetail', () => {
     };
 
     afterEach( () => {
-        cleanup();
         getItemDetailSpy.mockClear();
+        getProductsSpy.mockClear();
     });
 
     beforeAll( () => {
         getItemDetailSpy = jest.spyOn( SearchService, 'getItemDetail' );
+        getProductsSpy = jest.spyOn( SearchService, 'getProducts' );
     });
 
     beforeEach( async ()=>{
         getItemDetailSpy.mockReturnValue( Promise.resolve( defaultItemDetailResult ) );
+        getProductsSpy.mockReturnValue( Promise.resolve( defaultSearchResults ) );
 
         await act( ()=> {
             wrapper = getRender();
@@ -70,16 +66,95 @@ describe( 'ItemDetail', () => {
         expect( description ).toBeInTheDocument();
     });
 
-    // test( 'Should redirect to error page on service error', async () => {
-    //     await act( () => {
-    //         getItemDetailSpy.mockReturnValue( Promise.reject() );
-    //         wrapper = getRender();
-    //         return Promise.resolve();
-    //     });
+    test( 'Should call service on new search term', async () => {
+        const input = wrapper.container.querySelector( '.sid-search-bar__input' );
+        const submitButton = wrapper.container.querySelector( '.search-bar__logo-search' );
 
-    //     await wait( () => {
-    //         expect( mockedNavigator ).toHaveBeenCalled();
-    //     });
-    // });
+        expect( input ).toBeInTheDocument();
+        expect( submitButton ).toBeInTheDocument();
+
+        if ( input ) {
+            await act( () => {
+                fireEvent.change( input,  {
+                    target: {
+                        value: 'query'
+                    }
+                });
+                return Promise.resolve();
+            });
+        }
+        if ( submitButton ) {
+            await act( () => {
+                fireEvent.click ( submitButton );
+            });
+            return Promise.resolve();
+        }
+
+        expect( getProductsSpy ).toHaveBeenCalledWith( 'query' );
+        expect( mockedUsedNavigate ).toHaveBeenCalledWith( `{ ${SearchService.states.search}?search=query` );
+    });
+
+    test( 'Should redirect to error page on item detail service error', async () => {
+        await act( () => {
+            getItemDetailSpy.mockReturnValue( Promise.reject() );
+            wrapper = getRender();
+            return Promise.resolve();
+        });
+
+        expect( mockedUsedNavigate ).toHaveBeenCalledWith(
+            SearchService.states.error, {
+                'state': OperationResult.error });
+    });
+
+    test( 'Should redirect to error page on get products service error', async () => {
+        await act( () => {
+            getItemDetailSpy.mockReturnValue( Promise.resolve( defaultItemDetailResult ) );
+            getProductsSpy.mockReturnValue( Promise.reject() );
+            wrapper = getRender();
+        });
+        const input = wrapper.container.querySelector( '.sid-search-bar__input' );
+        const submitButton = wrapper.container.querySelector( '.search-bar__logo-search' );
+
+        expect( input ).toBeInTheDocument();
+        expect( submitButton ).toBeInTheDocument();
+
+        if ( input ) {
+            await act( () => {
+                fireEvent.change( input,  {
+                    target: {
+                        value: 'query'
+                    }
+                });
+                return Promise.resolve();
+            });
+        }
+
+        if ( submitButton ) {
+            await act( () => {
+                fireEvent.click ( submitButton );
+            });
+            return Promise.resolve();
+        }
+
+        expect( getProductsSpy ).toHaveBeenCalled();
+        expect( mockedUsedNavigate ).toHaveBeenCalledWith(
+            SearchService.states.error, { 'state': OperationResult.error });
+
+    });
+
+    test( 'Should redirect to home page', async () => {
+        const logo = wrapper.container.querySelector( '.search-bar__logo-img' );
+        expect( logo ).toBeInTheDocument();
+
+        if ( logo ) {
+            await act( () => {
+                fireEvent.click( logo );
+                return Promise.resolve();
+            });
+        }
+
+        expect( mockedUsedNavigate ).toHaveBeenCalledWith( SearchService.states.home );
+
+    });
 
 });

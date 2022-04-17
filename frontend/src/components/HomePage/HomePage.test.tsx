@@ -60,8 +60,10 @@ describe( 'HomePage', () => {
 
     test( 'Should redirect on new search term', async ()=> {
         const input = wrapper.container.querySelector( '.sid-search-bar__input' );
+        const submitButton = wrapper.container.querySelector( '.search-bar__logo-search' );
 
         expect( input ).toBeInTheDocument();
+        expect( submitButton ).toBeInTheDocument();
 
         if ( input ) {
             await act( () => {
@@ -72,10 +74,15 @@ describe( 'HomePage', () => {
                 });
                 return Promise.resolve();
             });
-            fireEvent.keyUp( input, { key: 'Enter' });
+        }
+        if ( submitButton ) {
+            await act( () => {
+                fireEvent.click ( submitButton );
+            });
+            return Promise.resolve();
         }
 
-        expect( mockedUsedNavigate ).toHaveBeenCalledWith( SearchService.states.search );
+        expect( mockedUsedNavigate ).toHaveBeenCalledWith( `{ ${SearchService.states.search}?search=query` );
 
     });
 });

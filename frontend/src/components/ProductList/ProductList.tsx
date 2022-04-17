@@ -11,7 +11,7 @@ const ProductList: React.FC<ProductListProps> = ({ data }): JSX.Element => {
     const elements = data.items.slice( 0, 4 );
 
     return (
-        <section className='product-list__list'>
+        <section className='sid-product-list__list product-list__list'>
             {elements.map( ( elem, index ) =>
                 <ProductCard data={elem} key={index} />
             )}

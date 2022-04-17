@@ -1,24 +1,16 @@
 import React  from 'react';
 import { cleanup, fireEvent, render, RenderResult } from '@testing-library/react';
 import { act } from 'react-test-renderer';
-import { SearchProvider, defaultSearchResults } from '../../providers/Search.provider';
+import { SearchProvider } from '../../providers/Search.provider';
 import { BrowserRouter } from 'react-router-dom';
 import ProductCard from './ProductCard';
-import { ItemsResult } from '../../models/Result.model';
 import { Product } from '../../models/Product.model';
 import { ConditionOptions, CurrencyTypes } from '../../enums/enums';
-import { wait } from '@testing-library/user-event/dist/utils';
+import { mockedUsedNavigate } from '../../setupTests';
 import SearchService from '../../services/Search.service';
 
 describe( 'ProductCard', () => {
     let wrapper: RenderResult;
-    const mockedNavigator = jest.fn();
-    jest.mock( 'react-router-dom', () => ({
-        ...( jest.requireActual( 'react-router-dom' ) as any ),
-        useNavigate: () => ({
-            navigate: jest.fn().mockImplementation( () => ({}) )
-        })
-    }) );
 
     const mockData: Product = {
         title: 'Mock',
@@ -48,7 +40,6 @@ describe( 'ProductCard', () => {
     });
 
     beforeEach( async ()=>{
-        window.alert = jest.fn();
         await act( ()=> {
             wrapper = getRender( mockData );
             return Promise.resolve();
@@ -61,21 +52,19 @@ describe( 'ProductCard', () => {
         expect( element ).toBeInTheDocument();
     });
 
-    // test( 'Should redirect to item detail page', async ()=> {
-    //     const element = wrapper.container.querySelector( '.sid-product-card' );
+    test( 'Should redirect to item detail page', async ()=> {
+        const element = wrapper.container.querySelector( '.sid-product-card' );
 
-    //     expect( element ).toBeInTheDocument();
+        expect( element ).toBeInTheDocument();
 
-    //     if ( element ) {
-    //         await act( () => {
-    //             fireEvent.click( element );
-    //             return Promise.resolve();
-    //         });
-    //     }
+        if ( element ) {
+            await act( () => {
+                fireEvent.click( element );
+                return Promise.resolve();
+            });
+        }
 
-    //     await wait( () => {
-    //         expect( mockedNavigator ).toHaveBeenCalledWith( SearchService.states.detail );
-    //     });
+        expect( mockedUsedNavigate ).toHaveBeenCalledWith( `{ ${SearchService.states.detail}${mockData.id}` );
 
-    // });
+    });
 });
