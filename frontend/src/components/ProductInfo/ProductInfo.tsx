@@ -18,7 +18,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ condition, sold, title, price
     const navigateTo = useNavigate();
 
     const addToCart = (): void => {
-        navigateTo( SearchService.states.success, { state: OperationResult.success });
+        navigateTo( SearchService.states.success );
     };
 
     const properCondition = ( condition: string ): string => {
@@ -38,7 +38,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ condition, sold, title, price
             <div className='sid-product-info__amount product-info__amount'>
 
                 <h2 className='product-info__price'>{amountFormat.formatARSAmount( price.amount )}</h2>
-                <span className='product-info__decimals'>
+                <span className='sid-product-info__decimals product-info__decimals'>
                     {price.decimals > 0 ?
                         price.decimals.toString().length === 1 ?
                             `${price.decimals.toString()}0`

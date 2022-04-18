@@ -94,7 +94,7 @@ describe( 'Layout', () => {
             return Promise.resolve();
         }
 
-        expect( mockedUsedNavigate ).toHaveBeenCalledWith( SearchService.states.error, OperationResult.error );
+        expect( mockedUsedNavigate ).toHaveBeenCalledWith( SearchService.states.error );
 
     });
 

@@ -73,7 +73,7 @@ describe( 'ProductInfo', () => {
             price: {
                 currency: CurrencyTypes.arg,
                 amount: 3000,
-                decimals: 50
+                decimals: 0
             }
         };
         wrapper = getRender( mockProductInfoProps );
@@ -81,6 +81,44 @@ describe( 'ProductInfo', () => {
 
         expect( condition ).toBeInTheDocument();
         expect( condition ).toHaveTextContent( 'Usado - 10 vendidos' );
+
+    });
+
+    test( 'Should show 00 when decimal is 0', async ()=> {
+        mockProductInfoProps = {
+            condition: ConditionOptions.usado,
+            sold: 10,
+            title: 'Producto mock 2',
+            price: {
+                currency: CurrencyTypes.arg,
+                amount: 3000,
+                decimals: 0
+            }
+        };
+        wrapper = getRender( mockProductInfoProps );
+        const decimals = wrapper.container.querySelector( '.sid-product-info__decimals' );
+
+        expect( decimals ).toBeInTheDocument();
+        expect( decimals ).toHaveTextContent( '00' );
+
+    });
+
+    test( 'Should complete with 0 when decimal has one digit', async ()=> {
+        mockProductInfoProps = {
+            condition: ConditionOptions.usado,
+            sold: 10,
+            title: 'Producto mock 2',
+            price: {
+                currency: CurrencyTypes.arg,
+                amount: 3000,
+                decimals: 1
+            }
+        };
+        wrapper = getRender( mockProductInfoProps );
+        const decimals = wrapper.container.querySelector( '.sid-product-info__decimals' );
+
+        expect( decimals ).toBeInTheDocument();
+        expect( decimals ).toHaveTextContent( '10' );
 
     });
 
@@ -97,7 +135,7 @@ describe( 'ProductInfo', () => {
         }
 
         expect( mockedUsedNavigate ).toHaveBeenCalledWith(
-            SearchService.states.success, { 'state': OperationResult.success });
+            SearchService.states.success );
 
     });
 
