@@ -6,6 +6,8 @@ Mercado Libre web application built on ExpressJS
 ## Install
 
 npm install
+
+## Start
 npm start
 
 ## Available Routes:
