@@ -37,7 +37,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onInputChange, onClickHandler }):
 
                 <div className='sid-search-bar__logo-container search-bar__logo-container'>
                     <img
-                        className='search-bar__logo-img'
+                        className='sid-search-bar__logo-img search-bar__logo-img'
                         onClick={homeRedirect}
                         src={LogoML}
                         alt='logo-mercado-libre'

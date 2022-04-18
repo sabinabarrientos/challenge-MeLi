@@ -44,7 +44,7 @@ describe( 'HomePage', () => {
     });
 
     test( 'Should redirect to homepage', async ()=> {
-        const logo = wrapper.container.querySelector( '.search-bar__logo-img' );
+        const logo = wrapper.container.querySelector( '.sid-search-bar__logo-img' );
         expect( logo ).toBeInTheDocument();
 
         if ( logo ) {
