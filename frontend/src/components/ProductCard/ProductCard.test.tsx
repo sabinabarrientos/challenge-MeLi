@@ -40,7 +40,7 @@ describe( 'ProductCard', () => {
     });
 
     beforeEach( async ()=>{
-        await act( ()=> {
+        act( ()=> {
             wrapper = getRender( mockData );
             return Promise.resolve();
         });
@@ -58,7 +58,7 @@ describe( 'ProductCard', () => {
         expect( element ).toBeInTheDocument();
 
         if ( element ) {
-            await act( () => {
+            act( () => {
                 fireEvent.click( element );
                 return Promise.resolve();
             });

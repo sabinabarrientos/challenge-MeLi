@@ -33,7 +33,7 @@ describe( 'Button', () => {
 
     beforeEach( async ()=>{
         window.alert = jest.fn();
-        await act( ()=> {
+        act( ()=> {
             wrapper = getRender( mockButtonProps );
             return Promise.resolve();
         });
@@ -55,7 +55,7 @@ describe( 'Button', () => {
         expect( element ).toBeInTheDocument();
 
         if ( element ) {
-            await act( () => {
+            act( () => {
                 fireEvent.click( element );
                 return Promise.resolve();
             });
@@ -70,7 +70,7 @@ describe( 'Button', () => {
             text:'texto del botón',
             size:ButtonSizes.normal
         };
-        await act( ()=> {
+        act( ()=> {
             wrapper = getRender( mockButtonProps );
             return Promise.resolve();
         });

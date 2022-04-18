@@ -40,7 +40,7 @@ describe( 'SearchBar', () => {
         window.alert = jest.fn();
         getProductsSpy.mockReturnValue( Promise.resolve( defaultSearchResults ) );
 
-        await act( ()=> {
+        act( ()=> {
             wrapper = getRender( mockSearchBarProps );
             return Promise.resolve();
         });
@@ -63,7 +63,7 @@ describe( 'SearchBar', () => {
         expect( submitButton ).toBeInTheDocument();
 
         if ( input ) {
-            await act( () => {
+            act( () => {
                 fireEvent.change( input,  {
                     target: {
                         value: 'query'
@@ -74,7 +74,7 @@ describe( 'SearchBar', () => {
         }
 
         if ( submitButton ) {
-            await act( () => {
+            act( () => {
                 fireEvent.click ( submitButton );
             });
             return Promise.resolve();
@@ -90,7 +90,7 @@ describe( 'SearchBar', () => {
         expect( input ).toBeInTheDocument();
 
         if ( input ) {
-            await act( () => {
+            act( () => {
                 fireEvent.change( input,  {
                     target: {
                         value: 'query'
@@ -111,7 +111,7 @@ describe( 'SearchBar', () => {
         expect( input ).toBeInTheDocument();
 
         if ( input ) {
-            await act( () => {
+            act( () => {
                 fireEvent.change( input,  {
                     target: {
                         value: 'query'
@@ -131,7 +131,7 @@ describe( 'SearchBar', () => {
         expect( logo ).toBeInTheDocument();
 
         if ( logo ) {
-            await act( () => {
+            act( () => {
                 fireEvent.click ( logo );
             });
             return Promise.resolve();

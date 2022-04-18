@@ -20,7 +20,7 @@ describe( 'Breadcrumb', () => {
     };
 
     beforeEach( async ()=>{
-        await act( ()=> {
+        act( ()=> {
             wrapper = getRender( mockCategories );
             return Promise.resolve();
         });

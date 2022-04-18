@@ -44,7 +44,7 @@ describe( 'ProductList', () => {
     };
 
     beforeEach( async ()=>{
-        await act( ()=> {
+        act( ()=> {
             wrapper = getRender( mockData );
             return Promise.resolve();
         });

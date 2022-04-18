@@ -33,7 +33,7 @@ describe( 'ProductInfo', () => {
     };
 
     beforeEach( async ()=>{
-        await act( ()=> {
+        act( ()=> {
             wrapper = getRender( mockProductInfoProps );
             return Promise.resolve();
         });
@@ -128,7 +128,7 @@ describe( 'ProductInfo', () => {
         expect( button ).toBeInTheDocument();
 
         if ( button ) {
-            await act( () => {
+            act( () => {
                 fireEvent.click( button );
                 return Promise.resolve();
             });

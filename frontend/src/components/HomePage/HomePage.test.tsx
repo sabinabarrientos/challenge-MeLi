@@ -32,7 +32,7 @@ describe( 'HomePage', () => {
 
     beforeEach( async ()=>{
         getProductsSpy.mockReturnValue( Promise.resolve( defaultSearchResults ) );
-        await act( ()=> {
+        act( ()=> {
             wrapper = getRender();
             return Promise.resolve();
         });
@@ -48,7 +48,7 @@ describe( 'HomePage', () => {
         expect( logo ).toBeInTheDocument();
 
         if ( logo ) {
-            await act( () => {
+            act( () => {
                 fireEvent.click( logo );
                 return Promise.resolve();
             });
@@ -66,7 +66,7 @@ describe( 'HomePage', () => {
         expect( submitButton ).toBeInTheDocument();
 
         if ( input ) {
-            await act( () => {
+            act( () => {
                 fireEvent.change( input,  {
                     target: {
                         value: 'query'
@@ -76,7 +76,7 @@ describe( 'HomePage', () => {
             });
         }
         if ( submitButton ) {
-            await act( () => {
+            act( () => {
                 fireEvent.click ( submitButton );
             });
             return Promise.resolve();

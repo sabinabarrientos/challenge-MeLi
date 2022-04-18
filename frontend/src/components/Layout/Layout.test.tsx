@@ -33,7 +33,7 @@ describe( 'Layout', () => {
 
     beforeEach( async ()=>{
         getProductsSpy.mockReturnValue( Promise.resolve( defaultSearchResults ) );
-        await act( ()=> {
+        act( ()=> {
             wrapper = getRender();
             return Promise.resolve();
         });
@@ -57,7 +57,7 @@ describe( 'Layout', () => {
         expect( logo ).toBeInTheDocument();
 
         if ( logo ) {
-            await act( () => {
+            act( () => {
                 fireEvent.click( logo );
                 return Promise.resolve();
             });
@@ -78,7 +78,7 @@ describe( 'Layout', () => {
         expect( submitButton ).toBeInTheDocument();
 
         if ( input ) {
-            await act( () => {
+            act( () => {
                 fireEvent.change( input,  {
                     target: {
                         value: 'query'
@@ -88,7 +88,7 @@ describe( 'Layout', () => {
             });
         }
         if ( submitButton ) {
-            await act( () => {
+            act( () => {
                 fireEvent.click ( submitButton );
             });
             return Promise.resolve();
@@ -106,7 +106,7 @@ describe( 'Layout', () => {
         expect( submitButton ).toBeInTheDocument();
 
         if ( input ) {
-            await act( () => {
+            act( () => {
                 fireEvent.change( input,  {
                     target: {
                         value: 'query'
@@ -117,7 +117,7 @@ describe( 'Layout', () => {
         }
 
         if ( submitButton ) {
-            await act( () => {
+            act( () => {
                 fireEvent.click ( submitButton );
             });
             return Promise.resolve();
