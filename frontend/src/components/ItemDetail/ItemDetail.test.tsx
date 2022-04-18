@@ -121,4 +121,42 @@ describe( 'ItemDetail', () => {
 
     });
 
+    //* To-do:
+    // After update testing-library to lastest version this tests fails
+    //*
+    // test( 'Should redirect to error page on get products service error', async () => {
+    //     act( () => {
+    //         getProductsSpy.mockReturnValue( Promise.reject() );
+    //         wrapper = getRender();
+    //         return Promise.resolve();
+    //     });
+
+    //     const input = wrapper.container.querySelector( '.sid-search-bar__input' );
+    //     const submitButton = wrapper.container.querySelector( '.sid-search-bar__logo-search' );
+
+    //     expect( input ).toBeInTheDocument();
+    //     expect( submitButton ).toBeInTheDocument();
+
+    //     if ( input ) {
+    //         await act( () => {
+    //             fireEvent.change( input,  {
+    //                 target: {
+    //                     value: 'query'
+    //                 }
+    //             });
+    //             return Promise.resolve();
+    //         });
+    //     }
+    //     if ( submitButton ) {
+    //         await act( () => {
+    //             fireEvent.click ( submitButton );
+    //         });
+    //         return Promise.resolve();
+    //     }
+
+    //     expect( getProductsSpy ).toHaveBeenCalledWith( 'query' );
+    //     expect( mockedUsedNavigate ).toHaveBeenCalledWith( SearchService.states.error );
+
+    // });
+
 });
