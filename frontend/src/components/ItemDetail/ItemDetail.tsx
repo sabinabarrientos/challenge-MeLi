@@ -6,7 +6,7 @@ import Breadcrumb from '../Breadcrumb/Breadcrumb';
 import SearchBar from '../SearchBar/SearchBar';
 import Loading from '../Loading/Loading';
 import Picture from '../Picture/Picture';
-import { OperationResult, PictureSizes } from '../../enums/enums';
+import { PictureSizes } from '../../enums/enums';
 import ProductInfo from '../ProductInfo/ProductInfo';
 import ProductDescription from '../ProductDescription/ProductDescription';
 import { usePageTitle } from '../../hooks/usePageTitle';

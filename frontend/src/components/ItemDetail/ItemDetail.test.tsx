@@ -7,8 +7,6 @@ import ItemDetail from './ItemDetail';
 import SearchService from '../../services/Search.service';
 import { ItemDetailResult, ItemsResult } from '../../models/Result.model';
 import { mockedUsedNavigate } from '../../setupTests';
-import { OperationResult } from '../../enums/enums';
-import { notDeepEqual } from 'assert';
 
 describe( 'ItemDetail', () => {
     let wrapper: RenderResult,
@@ -27,6 +25,7 @@ describe( 'ItemDetail', () => {
     afterEach( () => {
         getItemDetailSpy.mockClear();
         getProductsSpy.mockClear();
+        cleanup();
     });
 
     beforeAll( () => {
@@ -42,6 +41,7 @@ describe( 'ItemDetail', () => {
             wrapper = getRender();
             return Promise.resolve();
         });
+
     });
 
     test( 'Should render without error', ()=> {
@@ -107,8 +107,8 @@ describe( 'ItemDetail', () => {
     });
 
     test( 'Should redirect to error page on get products service error', async () => {
-        getProductsSpy.mockReturnValue( Promise.reject() );
         await act( () => {
+            getProductsSpy.mockReturnValue( Promise.reject() );
             wrapper = getRender();
             return Promise.resolve();
         });
