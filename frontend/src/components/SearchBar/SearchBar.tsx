@@ -57,7 +57,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onInputChange, onClickHandler }):
                     <img
                         aria-label='buscador'
                         role='button'
-                        className='search-bar__logo-search'
+                        className='sid-search-bar__logo-search search-bar__logo-search'
                         src={SearchIcon}
                         alt='buscar'
                     />

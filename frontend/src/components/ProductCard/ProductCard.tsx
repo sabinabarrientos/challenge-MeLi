@@ -26,7 +26,7 @@ const ProductCard: React.FC<ProductListProps> = ({
         <section className='sid-product-card'>
 
             <section
-                className='product-card__content'
+                className='sid-product-card__content product-card__content'
                 onClick={itemDetailRedirection}>
                 <div className='product-card__img'>
 
@@ -45,7 +45,7 @@ const ProductCard: React.FC<ProductListProps> = ({
                             {free_shipping &&
                             <div>
                                 <img
-                                    className='product-card__free-shipping-icon'
+                                    className='sid-product-card__free-shipping-icon product-card__free-shipping-icon'
                                     src={freeShippingImg}
                                     alt='envio-gratis'
                                 />

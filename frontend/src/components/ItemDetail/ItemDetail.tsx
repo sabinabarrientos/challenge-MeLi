@@ -25,7 +25,7 @@ const ItemDetail: React.FC = (): JSX.Element => {
             .then( ( data ) => {
                 context.updateItemDetail( data );
             })
-            .catch( () => navigateTo( SearchService.states.error, { state: OperationResult.error }) )
+            .catch( () => navigateTo( SearchService.states.error ) )
             .finally( () => setIsLoading( false ) );
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [] );
@@ -38,7 +38,7 @@ const ItemDetail: React.FC = (): JSX.Element => {
                 context.updateResult( data );
                 navigateTo( urlRedirect );
             })
-            .catch( () => navigateTo( SearchService.states.error, { state: OperationResult.error }) )
+            .catch( () => navigateTo( SearchService.states.error ) )
             .finally( () => setIsLoading( false ) );
     };
 

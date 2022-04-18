@@ -58,7 +58,7 @@ describe( 'SearchBar', () => {
 
     test( 'Should execute function on button clicked', async ()=> {
         const input = wrapper.container.querySelector( '.sid-search-bar__input' );
-        const submitButton = wrapper.container.querySelector( '.search-bar__logo-search' );
+        const submitButton = wrapper.container.querySelector( '.sid-search-bar__logo-search' );
         expect( input ).toBeInTheDocument();
         expect( submitButton ).toBeInTheDocument();
 

@@ -21,7 +21,7 @@ describe( 'ProductCard', () => {
         },
         picture: '',
         id: 'ML1111',
-        free_shipping: false,
+        free_shipping: true,
         condition: ConditionOptions.nuevo,
         city: ''
     };
@@ -53,7 +53,7 @@ describe( 'ProductCard', () => {
     });
 
     test( 'Should redirect to item detail page', async ()=> {
-        const element = wrapper.container.querySelector( '.sid-product-card' );
+        const element = wrapper.container.querySelector( '.sid-product-card__content' );
 
         expect( element ).toBeInTheDocument();
 
@@ -64,7 +64,14 @@ describe( 'ProductCard', () => {
             });
         }
 
-        expect( mockedUsedNavigate ).toHaveBeenCalledWith( `{ ${SearchService.states.detail}${mockData.id}` );
+        expect( mockedUsedNavigate ).toHaveBeenCalledWith( `${SearchService.states.detail}${mockData.id}` );
+
+    });
+
+    test( 'Should show free shipping icon', async ()=> {
+        const icon = wrapper.container.querySelector( '.sid-product-card__free-shipping-icon' );
+
+        expect( icon ).toBeInTheDocument();
 
     });
 });

@@ -1,5 +1,5 @@
 import React  from 'react';
-import { fireEvent, render, RenderResult } from '@testing-library/react';
+import { cleanup, fireEvent, render, RenderResult } from '@testing-library/react';
 import { act } from 'react-test-renderer';
 import { SearchProvider, defaultItemDetailResult, defaultSearchResults } from '../../providers/Search.provider';
 import { BrowserRouter } from 'react-router-dom';
@@ -8,6 +8,7 @@ import SearchService from '../../services/Search.service';
 import { ItemDetailResult, ItemsResult } from '../../models/Result.model';
 import { mockedUsedNavigate } from '../../setupTests';
 import { OperationResult } from '../../enums/enums';
+import { notDeepEqual } from 'assert';
 
 describe( 'ItemDetail', () => {
     let wrapper: RenderResult,
@@ -102,18 +103,18 @@ describe( 'ItemDetail', () => {
         });
 
         expect( mockedUsedNavigate ).toHaveBeenCalledWith(
-            SearchService.states.error, {
-                'state': OperationResult.error });
+            SearchService.states.error );
     });
 
     test( 'Should redirect to error page on get products service error', async () => {
+        getProductsSpy.mockReturnValue( Promise.reject() );
         await act( () => {
-            getItemDetailSpy.mockReturnValue( Promise.resolve( defaultItemDetailResult ) );
-            getProductsSpy.mockReturnValue( Promise.reject() );
             wrapper = getRender();
+            return Promise.resolve();
         });
+
         const input = wrapper.container.querySelector( '.sid-search-bar__input' );
-        const submitButton = wrapper.container.querySelector( '.search-bar__logo-search' );
+        const submitButton = wrapper.container.querySelector( '.sid-search-bar__logo-search' );
 
         expect( input ).toBeInTheDocument();
         expect( submitButton ).toBeInTheDocument();
@@ -128,7 +129,6 @@ describe( 'ItemDetail', () => {
                 return Promise.resolve();
             });
         }
-
         if ( submitButton ) {
             await act( () => {
                 fireEvent.click ( submitButton );
@@ -136,9 +136,8 @@ describe( 'ItemDetail', () => {
             return Promise.resolve();
         }
 
-        expect( getProductsSpy ).toHaveBeenCalled();
-        expect( mockedUsedNavigate ).toHaveBeenCalledWith(
-            SearchService.states.error, { 'state': OperationResult.error });
+        expect( getProductsSpy ).toHaveBeenCalledWith( 'query' );
+        expect( mockedUsedNavigate ).toHaveBeenCalledWith( SearchService.states.error );
 
     });
 

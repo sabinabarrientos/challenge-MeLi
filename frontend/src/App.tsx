@@ -25,10 +25,18 @@ const App: React.FC = (): JSX.Element => {
                         element={<ItemDetail />} />
                     <Route
                         path={SearchService.states.error}
-                        element={<SharedOperationResult />} />
+                        element={<SharedOperationResult location={{
+                            state: {
+                                isError: true
+                            }
+                        }} />} />
                     <Route
                         path={SearchService.states.success}
-                        element={<SharedOperationResult />} />
+                        element={<SharedOperationResult location={{
+                            state: {
+                                isError: false
+                            }
+                        }} />} />
 
                 </Routes>
             </SearchProvider>
