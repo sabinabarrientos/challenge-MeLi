@@ -4,7 +4,7 @@ import { act } from 'react-test-renderer';
 import { SearchProvider } from '../../providers/Search.provider';
 import ProductInfo, { ProductInfoProps } from './ProductInfo';
 import { BrowserRouter } from 'react-router-dom';
-import { ConditionOptions, CurrencyTypes, OperationResult } from '../../enums/enums';
+import { ConditionOptions, CurrencyTypes } from '../../enums/enums';
 import { mockedUsedNavigate } from '../../setupTests';
 import SearchService from '../../services/Search.service';
 
@@ -33,7 +33,7 @@ describe( 'ProductInfo', () => {
     };
 
     beforeEach( async ()=>{
-        act( ()=> {
+        await act( ()=> {
             wrapper = getRender( mockProductInfoProps );
             return Promise.resolve();
         });
@@ -128,7 +128,7 @@ describe( 'ProductInfo', () => {
         expect( button ).toBeInTheDocument();
 
         if ( button ) {
-            act( () => {
+            await act( () => {
                 fireEvent.click( button );
                 return Promise.resolve();
             });

@@ -19,7 +19,7 @@ describe( 'Loading', () => {
     };
 
     beforeEach( async ()=>{
-        act( ()=> {
+        await act( ()=> {
             wrapper = getRender();
             return Promise.resolve();
         });

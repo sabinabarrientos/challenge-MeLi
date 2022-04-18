@@ -26,7 +26,7 @@ describe( 'Picture', () => {
     };
 
     beforeEach( async ()=>{
-        act( ()=> {
+        await act( ()=> {
             wrapper = getRender( props );
             return Promise.resolve();
         });

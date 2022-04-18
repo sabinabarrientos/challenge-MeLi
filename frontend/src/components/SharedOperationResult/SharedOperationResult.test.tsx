@@ -23,7 +23,7 @@ describe( 'SharedOperationResult', () => {
     };
 
     beforeEach( async ()=>{
-        act( ()=> {
+        await act( ()=> {
             wrapper = getRender( props );
             return Promise.resolve();
         });
@@ -43,7 +43,7 @@ describe( 'SharedOperationResult', () => {
         expect( button ).toBeInTheDocument();
 
         if ( button ) {
-            act( () => {
+            await act( () => {
                 fireEvent.click( button );
                 return Promise.resolve();
             });
@@ -67,7 +67,7 @@ describe( 'SharedOperationResult', () => {
     });
 
     test( 'Should render success page', async ()=> {
-        act( ()=> {
+        await act( ()=> {
             props = {
                 location: { state: { isError: false }}
             };
