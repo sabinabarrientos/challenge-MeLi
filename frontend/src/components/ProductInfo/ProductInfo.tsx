@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ButtonSizes, ConditionOptions, OperationResult } from '../../enums/enums';
+import { ButtonSizes, ConditionOptions } from '../../enums/enums';
 import { Price } from '../../models/Product.model';
 import amountFormat from '../../utils/amountFormat';
 import Button from '../Button/Button';

@@ -8,7 +8,6 @@ import Breadcrumb from '../Breadcrumb/Breadcrumb';
 import Loading from '../Loading/Loading';
 import { usePageTitle } from '../../hooks/usePageTitle';
 import './Layout.scss';
-import { OperationResult } from '../../enums/enums';
 
 const Layout: React.FC = (): JSX.Element => {
     const location = useLocation();
