@@ -107,7 +107,7 @@ describe( 'ItemDetail', () => {
     });
 
     test( 'Should redirect to error page on get products service error', async () => {
-        await act( () => {
+        act( () => {
             getProductsSpy.mockReturnValue( Promise.reject() );
             wrapper = getRender();
             return Promise.resolve();

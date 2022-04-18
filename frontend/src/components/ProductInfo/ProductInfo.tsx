@@ -38,9 +38,13 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ condition, sold, title, price
             <div className='sid-product-info__amount product-info__amount'>
 
                 <h2 className='product-info__price'>{amountFormat.formatARSAmount( price.amount )}</h2>
-                {price.decimals > 0 &&
-                    <span className='product-info__decimals'>{price.decimals}</span>
-                }
+                <span className='product-info__decimals'>
+                    {price.decimals > 0 ?
+                        price.decimals.toString().length === 1 ?
+                            `${price.decimals.toString()}0`
+                            : price.decimals
+                        : '00'}
+                </span>
 
             </div>
 
