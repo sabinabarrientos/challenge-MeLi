@@ -9,10 +9,10 @@ export interface ProductDescriptionProps {
 const ProductDescription: React.FC<ProductDescriptionProps> = ({ title, description }): JSX.Element => {
 
     return (
-        <>
-            <h4 className='product-description__title'>{title}</h4>
-            <p className='product-description__description'>{description}</p>
-        </>
+        <section className='sid-product-description product-description'>
+            <h4 className='sid-product-description__title product-description__title'>{title}</h4>
+            <p className='sid-product-description__description product-description__description'>{description}</p>
+        </section>
     );
 };
 
